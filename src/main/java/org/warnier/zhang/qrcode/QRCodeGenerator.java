@@ -28,6 +28,8 @@ public class QRCodeGenerator {
     public void generate(String text, String file) {
         BitMatrix matrix;
         try {
+            // 256*256 representing the preferred size in pixels.
+            // Represent the barcode image using a matrix of bits.
             matrix = writer.encode(text, BarcodeFormat.QR_CODE, 256, 256);
             renderFile(matrix, "PNG", file);
         } catch (WriterException e) {
@@ -50,6 +52,7 @@ public class QRCodeGenerator {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
+                // Gets the requested bit, where true means black.
                 image.setRGB(x, y, (matrix.get(x, y) ? Color.BLACK.getRGB() : Color.WHITE.getRGB()));
             }
         }
