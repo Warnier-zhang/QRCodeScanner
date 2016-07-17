@@ -27,8 +27,11 @@ public class QRCodeScanner {
     }
 
     private String decode(BufferedImage image) {
+        // A standard interface for abstracting different bitmaps;
         LuminanceSource source = new BufferedImageLuminanceSource(image);
+        // It is designed for high frequency images of barcodes with black data on white backgrounds.
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+        // A String representing the content encoded by the QR code;
         Result result = null;
         try {
             result = reader.decode(bitmap);
