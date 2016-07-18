@@ -7,8 +7,12 @@ lib/
 out/
 target/
 
-#Intellij IDEA
+# Intellij IDEA
 *.iml
 
 # Directory-based project 
 .idea/
+
+# Temp file
+test.png
+scanner.png
