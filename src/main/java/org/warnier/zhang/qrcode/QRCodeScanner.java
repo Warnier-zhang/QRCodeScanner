@@ -78,6 +78,7 @@ public class QRCodeScanner {
         }
     }
 
+    // Play a beep sound when finish scanning.
     private void playSound(String mp3) {
         FileInputStream stream = null;
         try {
