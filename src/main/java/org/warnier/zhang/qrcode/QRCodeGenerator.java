@@ -1,6 +1,7 @@
 package org.warnier.zhang.qrcode;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * QRCodeGenerator is capable of rendering QR code.
@@ -30,7 +32,7 @@ public class QRCodeGenerator {
         try {
             // 256*256 representing the preferred size in pixels.
             // Represent the barcode image using a matrix of bits.
-            matrix = writer.encode(text, BarcodeFormat.QR_CODE, 256, 256);
+            matrix = writer.encode(text, BarcodeFormat.QR_CODE, 400, 400);
             renderFile(matrix, "PNG", file);
         } catch (WriterException e) {
             e.printStackTrace();
