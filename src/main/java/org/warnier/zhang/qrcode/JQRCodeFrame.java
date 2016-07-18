@@ -28,7 +28,7 @@ public class JQRCodeFrame extends JFrame {
         JButton button = new JButton("关闭摄像头");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                webcam.close();
+                System.exit(0);
             }
         });
         add(button, BorderLayout.SOUTH);
