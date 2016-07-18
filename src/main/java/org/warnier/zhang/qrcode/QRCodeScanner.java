@@ -44,7 +44,7 @@ public class QRCodeScanner {
             }
             delayMillis(1750);
         } while (true);
-        playSound("sound.mp3");
+        playSound("beep.mp3");
         return result.getText();
     }
 
