@@ -10,10 +10,8 @@ import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.HashMap;
 
 /**
  * QRCodeScanner can scan and decode QR codes with the build-in camera on laptop PC.
@@ -45,10 +43,15 @@ public class QRCodeScanner {
             delayMillis(1750);
         } while (true);
         playSound("beep.mp3");
+
         return result.getText();
     }
 
     private Result decode(BufferedImage image) {
+        //Support zh_CN.
+        HashMap<DecodeHintType, String> hints = new HashMap<DecodeHintType, String>();
+        hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
+
         // A standard interface for abstracting different bitmaps;
         LuminanceSource source = new BufferedImageLuminanceSource(image);
         // It is designed for high frequency images of barcodes with black data on white backgrounds.
@@ -56,7 +59,7 @@ public class QRCodeScanner {
         // A String representing the content encoded by the QR code;
         Result result = null;
         try {
-            result = reader.decode(bitmap);
+            result = reader.decode(bitmap, hints);
         } catch (NotFoundException e) {
             e.printStackTrace();
         } catch (ChecksumException e) {
