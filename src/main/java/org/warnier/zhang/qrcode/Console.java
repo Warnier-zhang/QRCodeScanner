@@ -6,7 +6,7 @@ package org.warnier.zhang.qrcode;
 public class Console {
     public static final void main(String[] args) {
 //        QRCodeGenerator generator = new QRCodeGenerator();
-//        generator.generate("Hello World!");
+//        generator.generate("test!");
         QRCodeScanner scanner = new QRCodeScanner();
         System.out.println(scanner.scan());
     }
