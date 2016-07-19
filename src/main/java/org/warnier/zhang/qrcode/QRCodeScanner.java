@@ -35,7 +35,6 @@ public class QRCodeScanner {
             if ((image = camera.getImage()) == null) {
                 continue;
             }
-            makeLog(image);
             result = decode(image);
             if (result != null) {
                 break;

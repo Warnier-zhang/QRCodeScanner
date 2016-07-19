@@ -25,11 +25,11 @@ public class QRCodeGenerator {
     }
 
     public void generate(String text) {
-        generate(text, "test.png");
+        generate(text, "default.png");
     }
 
     public void generate(String text, String file) {
-        //Support zh_CN.
+        // Support zh_CN.
         HashMap<EncodeHintType, String> hints = new HashMap<EncodeHintType, String>();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
 
