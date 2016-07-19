@@ -10,10 +10,7 @@ import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -81,12 +78,7 @@ public class QRCodeScanner {
 
     // Play a beep sound when finish scanning.
     private void playSound(String mp3) {
-        FileInputStream stream = null;
-        try {
-            stream = new FileInputStream(mp3);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(mp3);
         try {
             Player player = new Player(stream);
             player.play();
