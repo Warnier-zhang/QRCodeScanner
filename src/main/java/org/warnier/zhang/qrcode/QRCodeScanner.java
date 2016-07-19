@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  * QRCodeScanner can scan and decode QR codes with the build-in camera on laptop PC.
