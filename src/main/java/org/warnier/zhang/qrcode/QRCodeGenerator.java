@@ -1,7 +1,6 @@
 package org.warnier.zhang.qrcode;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.DecodeHintType;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -13,7 +12,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 /**
  * QRCodeGenerator is capable of rendering QR code.

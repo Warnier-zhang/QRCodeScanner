@@ -10,9 +10,11 @@ import javazoom.jl.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 /**
  * QRCodeScanner can scan and decode QR codes with the build-in camera on laptop PC.
