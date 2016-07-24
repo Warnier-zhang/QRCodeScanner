@@ -45,6 +45,16 @@ public class QRCodeScanner {
         return result.getText();
     }
 
+    public String scan(InputStream stream) {
+        String result = "";
+        try {
+            result = decode(ImageIO.read(stream)).getText();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     private Result decode(BufferedImage image) {
         //Support zh_CN.
         HashMap<DecodeHintType, String> hints = new HashMap<DecodeHintType, String>();
