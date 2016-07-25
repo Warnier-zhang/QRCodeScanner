@@ -42,7 +42,7 @@ public class BarcodeGenerator {
             // Represent the barcode image using a matrix of bits.
             //matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 63, 46);
             // The size of barcode image affects whether can be detected or not!
-            matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 320, 230);
+            matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 120, 90);
             ImageWriter.renderFile(matrix, "PNG", file);
         } catch (WriterException e) {
             e.printStackTrace();
