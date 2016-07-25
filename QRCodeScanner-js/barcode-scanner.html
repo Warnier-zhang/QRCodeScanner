@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>条形码扫描器！</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/quagga.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<script src="./js/webcam.js"></script>
+<div id="qrcode_camera" style="width:320px; height:240px;"></div>
+<div id="qrcode_result"></div>
+<input type="button" value="Take Snapshot" onclick="take_snapshot()"/>
+
+<!-- Open camera and Script code must be put below the tag <div id="*-camera"/> -->
+<script language="JavaScript">
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90,
+        force_flash: true
+    });
+
+    // 'camera' is keyword, and can't be used as ID attribute.
+    Webcam.attach('#qrcode_camera');
+
+    function take_snapshot() {
+        Webcam.snap(function (data_uri) {
+            // Scan barcode.
+            Quagga.decodeSingle({
+                decoder: {
+                    readers: ["ean_reader"]
+                },
+                locate: true, // Locate the barcode in the image.
+                src: data_uri // Image source.
+            }, function (result) {
+                if(result.codeResult){
+                    document.getElementById('qrcode_result').innerHTML = "<p>" + result.codeResult.code + "</p>";
+                }else{
+                    document.getElementById('qrcode_result').innerHTML = "<p> Not detected!</p>";
+                }
+            });
+
+        });
+    }
+</script>
+</body>
+</html>
