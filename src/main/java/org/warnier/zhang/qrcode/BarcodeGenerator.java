@@ -37,14 +37,10 @@ public class BarcodeGenerator {
     }
 
     public void generate(String file) {
-        // Support zh_CN.
-        HashMap<EncodeHintType, String> hints = new HashMap<EncodeHintType, String>();
-        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-
         BitMatrix matrix;
         try {
             // Represent the barcode image using a matrix of bits.
-            matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 63, 46, hints);
+            matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 63, 46);
             ImageWriter.renderFile(matrix, "PNG", file);
         } catch (WriterException e) {
             e.printStackTrace();
