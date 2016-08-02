@@ -1,26 +1,19 @@
 package org.warnier.zhang.qrcode;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * BarcodeGenerator renders barcode of type EAN-13.
  * 3 bits for China(690~691), 4 bits for company, 5 bits for product!
  */
 public class BarcodeGenerator {
-    private String raw;
+    private String ean13Code;
     private MultiFormatWriter writer;
 
     public BarcodeGenerator() {
@@ -29,7 +22,8 @@ public class BarcodeGenerator {
 
     public BarcodeGenerator(String company, String batch) {
         writer = new MultiFormatWriter();
-        raw = "692" + company + batch;
+        String raw = "692" + company + batch;
+        ean13Code = raw + getCheckSum(raw);
     }
 
     public void generate() {
@@ -40,16 +34,21 @@ public class BarcodeGenerator {
         BitMatrix matrix;
         try {
             // Represent the barcode image using a matrix of bits.
-            //matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 63, 46);
+            // matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 63, 46);
             // The size of barcode image affects whether can be detected or not!
-            matrix = writer.encode(appendCheckSum(), BarcodeFormat.EAN_13, 120, 90);
-            ImageWriter.renderFile(matrix, "PNG", file);
+            // @param ean13Code render EAN-13 code into image.
+            matrix = writer.encode(ean13Code, BarcodeFormat.EAN_13, 120, 90);
+            ImageWriter.renderFile(ean13Code, matrix, "PNG", file);
         } catch (WriterException e) {
             e.printStackTrace();
         }
     }
 
-    private String appendCheckSum() {
+    public String getEAN13Code() {
+        return ean13Code;
+    }
+
+    private String getCheckSum(String raw) {
         int c1 = 0;
         int c2 = 0;
         int cc = 0;
@@ -71,7 +70,7 @@ public class BarcodeGenerator {
         if (c == 10) {
             c = 0;
         }
-        return raw + c;
+        return String.valueOf(c);
     }
 
     private void makeLog(String msg) {

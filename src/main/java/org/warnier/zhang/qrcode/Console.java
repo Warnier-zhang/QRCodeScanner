@@ -8,6 +8,7 @@ public class Console {
 // 益达口香糖：6923450657713
         BarcodeGenerator generator = new BarcodeGenerator("3450", "65771");
         generator.generate();
+        System.out.println(generator.getEAN13Code());
 
         BarcodeScanner scanner = new BarcodeScanner();
         System.out.println(scanner.scan("default.png"));
